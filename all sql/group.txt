@@ -1,0 +1,192 @@
+select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> set lines 200, pages 200;
+SP2-0268: linesize option not a valid number
+SQL> set lines=200,pages=200;
+SP2-0268: linesize option not a valid number
+SQL> set lines=200;
+SP2-0268: linesize option not a valid number
+SQL> set pagesize 200 ,linesize 200;
+SP2-0158: unknown SET option ",linesize"
+SQL> set pagesize 200;
+SQL> set linesize 200;
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                                                                   
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20                                                                                                                   
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30                                                                                                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                                                                   
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20                                                                                                                   
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                                                                                                   
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                                                                                                   
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                                                                                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                                                                                                   
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                                                                                                   
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30                                                                                                                   
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20                                                                                                                   
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30                                                                                                                   
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20                                                                                                                   
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                                                                                                   
+
+14 rows selected.
+
+SQL> select deptno,max(sal)
+  2  from emp
+  3  group by deptno;
+
+    DEPTNO   MAX(SAL)                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+        30       2850                                                                                                                                                                                   
+        20       3000                                                                                                                                                                                   
+        10       5000                                                                                                                                                                                   
+
+SQL> select ename,job,sal
+  2  from emp where(job,sal)in
+  3  (select job,avg(sal)
+  4  from emp
+  5  group by job;
+group by job
+           *
+ERROR at line 5:
+ORA-00920: invalid relational operator 
+
+
+SQL>  select ename,job,sal
+  2   from emp where(job,sal)in
+  3   (select job,avg(sal)
+  4   from emp
+  5   group by job);
+
+ENAME      JOB              SAL                                                                                                                                                                         
+---------- --------- ----------                                                                                                                                                                         
+KING       PRESIDENT       5000                                                                                                                                                                         
+FORD       ANALYST         3000                                                                                                                                                                         
+SCOTT      ANALYST         3000                                                                                                                                                                         
+
+SQL> select ename,count(comm)
+  2  from emp
+  3  group by ename
+  4  order by asc;
+order by asc
+         *
+ERROR at line 4:
+ORA-00936: missing expression 
+
+
+SQL> select ename,count(comm)
+  2  from emp
+  3  group by ename;
+
+ENAME      COUNT(COMM)                                                                                                                                                                                  
+---------- -----------                                                                                                                                                                                  
+ALLEN                1                                                                                                                                                                                  
+JONES                0                                                                                                                                                                                  
+FORD                 0                                                                                                                                                                                  
+CLARK                0                                                                                                                                                                                  
+MILLER               0                                                                                                                                                                                  
+SMITH                0                                                                                                                                                                                  
+WARD                 1                                                                                                                                                                                  
+MARTIN               1                                                                                                                                                                                  
+SCOTT                0                                                                                                                                                                                  
+TURNER               1                                                                                                                                                                                  
+ADAMS                0                                                                                                                                                                                  
+BLAKE                0                                                                                                                                                                                  
+KING                 0                                                                                                                                                                                  
+JAMES                0                                                                                                                                                                                  
+
+14 rows selected.
+
+SQL> select ename,job,sal
+  2  from emp
+  3  order by sal asc;
+
+ENAME      JOB              SAL                                                                                                                                                                         
+---------- --------- ----------                                                                                                                                                                         
+SMITH      CLERK            800                                                                                                                                                                         
+JAMES      CLERK            950                                                                                                                                                                         
+ADAMS      CLERK           1100                                                                                                                                                                         
+WARD       SALESMAN        1250                                                                                                                                                                         
+MARTIN     SALESMAN        1250                                                                                                                                                                         
+MILLER     CLERK           1300                                                                                                                                                                         
+TURNER     SALESMAN        1500                                                                                                                                                                         
+ALLEN      SALESMAN        1600                                                                                                                                                                         
+CLARK      MANAGER         2450                                                                                                                                                                         
+BLAKE      MANAGER         2850                                                                                                                                                                         
+JONES      MANAGER         2975                                                                                                                                                                         
+SCOTT      ANALYST         3000                                                                                                                                                                         
+FORD       ANALYST         3000                                                                                                                                                                         
+KING       PRESIDENT       5000                                                                                                                                                                         
+
+14 rows selected.
+
+SQL> spool off;

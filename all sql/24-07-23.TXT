@@ -1,0 +1,656 @@
+SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> SET PAGES 200 LINES 200
+SQL> CL SCR
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                                                                   
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20                                                                                                                   
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30                                                                                                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                                                                   
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20                                                                                                                   
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                                                                                                   
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                                                                                                   
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                                                                                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                                                                                                   
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                                                                                                   
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30                                                                                                                   
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20                                                                                                                   
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30                                                                                                                   
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20                                                                                                                   
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                                                                                                   
+
+14 rows selected.
+
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+         1 RAM                10                                                                                                                                                                        
+         2 RAMESH             10                                                                                                                                                                        
+         3 SURESH             30                                                                                                                                                                        
+
+SQL> UPDATE PERSON SET AGE=22
+  2  FROM EMP
+  3  WHERE P_ID IN(1,3);
+FROM EMP
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> UPDATE PERSON SET AGE=20
+  2  FROM EMP
+  3  WHERE P_ID=3;
+FROM EMP
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> UPDATE PERSON SET AGE=18
+  2  FROM EMP
+  3  CL SCR
+  4  
+SQL> CL SCR;
+SQL> SELECT * FROM PERSON
+  2  ;
+
+      P_ID P_NAME         P_DEPT        AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+         1 RAM                10                                                                                                                                                                        
+         2 RAMESH             10                                                                                                                                                                        
+         3 SURESH             30                                                                                                                                                                        
+
+SQL> UPDATE PERSON SET AGE=22
+  2  FROM PERSON
+  3  WHERE P_ID IN(1,3);
+FROM PERSON
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> UPDATE PERSON SET AGE=18
+  2  FROM PERSON
+  3  WHERE P_ID=1;
+FROM PERSON
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                                                                   
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20                                                                                                                   
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30                                                                                                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                                                                   
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20                                                                                                                   
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                                                                                                   
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                                                                                                   
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                                                                                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                                                                                                   
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                                                                                                   
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30                                                                                                                   
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20                                                                                                                   
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30                                                                                                                   
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20                                                                                                                   
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                                                                                                   
+
+14 rows selected.
+
+SQL> UPDATE EMP SET COMM=500
+  2  FROM  EMP
+  3  WHERE JOB IN('MANAGER');
+FROM  EMP
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+         1 RAM                10                                                                                                                                                                        
+         2 RAMESH             10                                                                                                                                                                        
+         3 SURESH             30                                                                                                                                                                        
+
+SQL> UPDATE PERSON SET AGE=28
+  2  WHERE P_ID IN(1,3);
+
+2 rows updated.
+
+SQL> UPDATE TABLE SET AGE=30
+  2  ;
+UPDATE TABLE SET AGE=30
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> UPDATE PERSON SET AGE=30;
+
+3 rows updated.
+
+SQL> UPDATE PERSON SET AGE=22
+  2  WHERE P_ID IN(1,2,3);
+
+3 rows updated.
+
+SQL> DELETE FROM PERSON
+  2  WHERE P_ID IN(1,3);
+
+2 rows deleted.
+
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+         2 RAMESH             10         22                                                                                                                                                             
+
+SQL> SAVE POINT A;
+SP2-0116: Illegal SAVE command
+SQL> SAVEPOINT A;
+
+Savepoint created.
+
+SQL> INSERT INTO PERSON VALUES(1,'RAM',32);
+INSERT INTO PERSON VALUES(1,'RAM',32)
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> DESC PERON;
+ERROR:
+ORA-04043: object PERON does not exist 
+
+
+SQL> DESC PERSON;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ P_ID                                                                                                              NOT NULL NUMBER(10)
+ P_NAME                                                                                                                     VARCHAR2(10)
+ P_DEPT                                                                                                                     NUMBER
+ AGE                                                                                                                        NUMBER(3)
+
+SQL> INSERT INTO VALUES (1,'RAM',20,32);
+INSERT INTO VALUES (1,'RAM',20,32)
+            *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> INSERT INTO PERSON VALUES (1,'RAM',20,32);
+
+1 row created.
+
+SQL>  INSERT INTO PERSON VALUES (3,'SETA',30,28);
+
+1 row created.
+
+SQL> SAVEPOINT B;
+
+Savepoint created.
+
+SQL>  INSERT INTO PERSON VALUES (
+  2  2,'LAKSH',20,50);
+ INSERT INTO PERSON VALUES (
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C005456) violated 
+
+
+SQL> INSERT INTO PERSON VALUES (2,'LAKSH',20,50);;
+INSERT INTO PERSON VALUES (2,'LAKSH',20,50);
+                                           *
+ERROR at line 1:
+ORA-00911: invalid character 
+
+
+SQL> INSERT INTO PERSON VALUES (2,'LAKSH',20,50);
+INSERT INTO PERSON VALUES (2,'LAKSH',20,50)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C005456) violated 
+
+
+SQL>  INSERT INTO PERSON VALUES (2,'LAKSH',20,29);
+ INSERT INTO PERSON VALUES (2,'LAKSH',20,29)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C005456) violated 
+
+
+SQL>  INSERT INTO PERSON VALUES (2,'LAKSH',33,41);
+ INSERT INTO PERSON VALUES (2,'LAKSH',33,41)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C005456) violated 
+
+
+SQL>  INSERT INTO PERSON VALUES (10,'LAKSH',33,41);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> ROLL BACK TO B;
+Rollback complete.
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+         1 RAM                20         32                                                                                                                                                             
+         3 SETA               30         28                                                                                                                                                             
+        10 LAKSH              33         41                                                                                                                                                             
+         2 RAMESH             10         22                                                                                                                                                             
+
+SQL> ROLL BACK TO A;
+Rollback complete.
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+         1 RAM                20         32                                                                                                                                                             
+         3 SETA               30         28                                                                                                                                                             
+        10 LAKSH              33         41                                                                                                                                                             
+         2 RAMESH             10         22                                                                                                                                                             
+
+SQL> ROLL BACK TO A;
+Rollback complete.
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+         1 RAM                20         32                                                                                                                                                             
+         3 SETA               30         28                                                                                                                                                             
+        10 LAKSH              33         41                                                                                                                                                             
+         2 RAMESH             10         22                                                                                                                                                             
+
+SQL> ROLL BACK;
+Rollback complete.
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+         1 RAM                20         32                                                                                                                                                             
+         3 SETA               30         28                                                                                                                                                             
+        10 LAKSH              33         41                                                                                                                                                             
+         2 RAMESH             10         22                                                                                                                                                             
+
+SQL> SELECT MOD(30,5) FROM DUAL;
+
+ MOD(30,5)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         0                                                                                                                                                                                              
+
+SQL> SELECT MOD(3.5,2) FROM DUAL;
+
+MOD(3.5,2)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+       1.5                                                                                                                                                                                              
+
+SQL> SELECT ABS(-55) FROM DUAL;
+
+  ABS(-55)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        55                                                                                                                                                                                              
+
+SQL> SELECT ABS(SAL) FROM EMP;
+
+  ABS(SAL)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+       800                                                                                                                                                                                              
+      1600                                                                                                                                                                                              
+      1250                                                                                                                                                                                              
+      2975                                                                                                                                                                                              
+      1250                                                                                                                                                                                              
+      2850                                                                                                                                                                                              
+      2450                                                                                                                                                                                              
+      3000                                                                                                                                                                                              
+      5000                                                                                                                                                                                              
+      1500                                                                                                                                                                                              
+      1100                                                                                                                                                                                              
+       950                                                                                                                                                                                              
+      3000                                                                                                                                                                                              
+      1300                                                                                                                                                                                              
+
+14 rows selected.
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC                                                                                                                                                                           
+---------- -------------- -------------                                                                                                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                                                                                                      
+        20 RESEARCH       DALLAS                                                                                                                                                                        
+        30 SALES          CHICAGO                                                                                                                                                                       
+        40 OPERATIONS     BOSTON                                                                                                                                                                        
+
+SQL> SELECT MOD(DEPTNO) FROM DEPT;
+SELECT MOD(DEPTNO) FROM DEPT
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT MOD(SAL) FROM EMP;
+SELECT MOD(SAL) FROM EMP
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT ABS(COMM) FROM EMP;
+
+ ABS(COMM)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+                                                                                                                                                                                                        
+       300                                                                                                                                                                                              
+       500                                                                                                                                                                                              
+                                                                                                                                                                                                        
+      1400                                                                                                                                                                                              
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+         0                                                                                                                                                                                              
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+
+14 rows selected.
+
+SQL> SELECT POWER(30,3) FROM DUAL;
+
+POWER(30,3)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+      27000                                                                                                                                                                                             
+
+SQL> SELECT POWER(55,5) FROM DUAL;
+
+POWER(55,5)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+  503284375                                                                                                                                                                                             
+
+SQL> SELECT COUNT('ENAME) FROM EMP;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT COUNT('ENAME') FROM EMP;
+
+COUNT('ENAME')                                                                                                                                                                                          
+--------------                                                                                                                                                                                          
+            14                                                                                                                                                                                          
+
+SQL> SELECT SQRT(25) FROM DUAL;
+
+  SQRT(25)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         5                                                                                                                                                                                              
+
+SQL> SELECT FLOOR(21.1,12.9) FROM DUAL;
+SELECT FLOOR(21.1,12.9) FROM DUAL
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT FLOOR(12.4) FROM DUAL;
+
+FLOOR(12.4)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         12                                                                                                                                                                                             
+
+SQL> SELECT FLOOR(12.9) FROM DUAL;
+
+FLOOR(12.9)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         12                                                                                                                                                                                             
+
+SQL> SELECT CEIL(12.9) FROM DUAL;
+
+CEIL(12.9)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        13                                                                                                                                                                                              
+
+SQL> SELECT CEIL(12.1) FROM DUAL'
+  2  
+SQL> SELECT CEIL(12.1) FROM DUAL;
+
+CEIL(12.1)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        13                                                                                                                                                                                              
+
+SQL> SELECT ROUND(21.1) FROM DUAL;
+
+ROUND(21.1)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         21                                                                                                                                                                                             
+
+SQL> SELECT ROUND(21.9) FROM DUAL;
+
+ROUND(21.9)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         22                                                                                                                                                                                             
+
+SQL> SELECT COMM,NVL(COMM,500) FROM EMP;
+
+      COMM NVL(COMM,500)                                                                                                                                                                                
+---------- -------------                                                                                                                                                                                
+                     500                                                                                                                                                                                
+       300           300                                                                                                                                                                                
+       500           500                                                                                                                                                                                
+                     500                                                                                                                                                                                
+      1400          1400                                                                                                                                                                                
+                     500                                                                                                                                                                                
+                     500                                                                                                                                                                                
+                     500                                                                                                                                                                                
+                     500                                                                                                                                                                                
+         0             0                                                                                                                                                                                
+                     500                                                                                                                                                                                
+                     500                                                                                                                                                                                
+                     500                                                                                                                                                                                
+                     500                                                                                                                                                                                
+
+14 rows selected.
+
+SQL> SELECT MGR,NULL(MGR,500,1000);
+SELECT MGR,NULL(MGR,500,1000)
+               *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT MGR,NULL(MGR,500,1000) FROM EMP;
+SELECT MGR,NULL(MGR,500,1000) FROM EMP
+               *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT MGR,NVL2(MGR,500,1000) FROM EMP;
+
+       MGR NVL2(MGR,500,1000)                                                                                                                                                                           
+---------- ------------------                                                                                                                                                                           
+      7902                500                                                                                                                                                                           
+      7698                500                                                                                                                                                                           
+      7698                500                                                                                                                                                                           
+      7839                500                                                                                                                                                                           
+      7698                500                                                                                                                                                                           
+      7839                500                                                                                                                                                                           
+      7839                500                                                                                                                                                                           
+      7566                500                                                                                                                                                                           
+                         1000                                                                                                                                                                           
+      7698                500                                                                                                                                                                           
+      7788                500                                                                                                                                                                           
+      7698                500                                                                                                                                                                           
+      7566                500                                                                                                                                                                           
+      7782                500                                                                                                                                                                           
+
+14 rows selected.
+
+SQL> SELECT LENGTH (JOB) FROM EMP;
+
+LENGTH(JOB)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+          5                                                                                                                                                                                             
+          8                                                                                                                                                                                             
+          8                                                                                                                                                                                             
+          7                                                                                                                                                                                             
+          8                                                                                                                                                                                             
+          7                                                                                                                                                                                             
+          7                                                                                                                                                                                             
+          7                                                                                                                                                                                             
+          9                                                                                                                                                                                             
+          8                                                                                                                                                                                             
+          5                                                                                                                                                                                             
+          5                                                                                                                                                                                             
+          7                                                                                                                                                                                             
+          5                                                                                                                                                                                             
+
+14 rows selected.
+
+SQL> SELECT UPPER(ENAME),LENGTH(JOB) FROM EMP;
+
+UPPER(ENAM LENGTH(JOB)                                                                                                                                                                                  
+---------- -----------                                                                                                                                                                                  
+SMITH                5                                                                                                                                                                                  
+ALLEN                8                                                                                                                                                                                  
+WARD                 8                                                                                                                                                                                  
+JONES                7                                                                                                                                                                                  
+MARTIN               8                                                                                                                                                                                  
+BLAKE                7                                                                                                                                                                                  
+CLARK                7                                                                                                                                                                                  
+SCOTT                7                                                                                                                                                                                  
+KING                 9                                                                                                                                                                                  
+TURNER               8                                                                                                                                                                                  
+ADAMS                5                                                                                                                                                                                  
+JAMES                5                                                                                                                                                                                  
+FORD                 7                                                                                                                                                                                  
+MILLER               5                                                                                                                                                                                  
+
+14 rows selected.
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                                                                   
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20                                                                                                                   
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30                                                                                                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                                                                   
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20                                                                                                                   
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                                                                                                   
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                                                                                                   
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                                                                                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                                                                                                   
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                                                                                                   
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30                                                                                                                   
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20                                                                                                                   
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30                                                                                                                   
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20                                                                                                                   
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                                                                                                   
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(HIREDATE,2,-3);
+SELECT SUBSTR(HIREDATE,2,-3)
+                           *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT SUBSTR(JOB,-3),UPPER(ENAME);
+SELECT SUBSTR(JOB,-3),UPPER(ENAME)
+                                 *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT SUBSTR(HIREDATE,-2);
+SELECT SUBSTR(HIREDATE,-2)
+                         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT SUBSTR(HIREDATE,2,-3) FROM EMP;
+
+S                                                                                                                                                                                                       

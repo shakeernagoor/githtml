@@ -1,0 +1,313 @@
+SELECT TRANSLATE('ENGINEER','EN','AB') FROM DUAL;
+
+TRANSLAT                                                                        
+--------                                                                        
+ABGIBAAR                                                                        
+
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                     
+---------- ---------- ---------- ----------                                     
+         1 RAM                20         32                                     
+         3 SETA               30         28                                     
+        10 LAKSH              33         41                                     
+         2 RAMESH             10         22                                     
+
+SQL> SELECT TRANSLATE(ENAME,'A','Z') FROM PERSON;
+SELECT TRANSLATE(ENAME,'A','Z') FROM PERSON
+                 *
+ERROR at line 1:
+ORA-00904: "ENAME": invalid identifier 
+
+
+SQL> SELECT ENAME(TRANSLATE(ENAME,'A','Z') FROM PERSON;
+SELECT ENAME(TRANSLATE(ENAME,'A','Z') FROM PERSON
+                                      *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL>  ENAME(TRANSLATE(ENAME,'A','Z')) FROM PERSON;
+SP2-0734: unknown command beginning "ENAME(TRAN..." - rest of line ignored.
+SQL> 
+SQL>  SELECT TRANSLATE(P_NAME,'A',Z') FROM PERSON;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT P_NAME(TRANSLATE(P_NAME,'A','E')) FROM PERSON;
+SELECT P_NAME(TRANSLATE(P_NAME,'A','E')) FROM PERSON
+       *
+ERROR at line 1:
+ORA-00904: "P_NAME": invalid identifier 
+
+
+SQL> SELECT P_NAME
+  2  FROM PERSON
+  3  WHERE TRANSLATE(P_NAME,'A','Z');
+WHERE TRANSLATE(P_NAME,'A','Z')
+                              *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT TRIM('A' FROM 'P_NAME) FROM PERSON;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT TRIM('A' FROM 'P_NAME') FROM PERSON;
+
+TRIM('                                                                          
+------                                                                          
+P_NAME                                                                          
+P_NAME                                                                          
+P_NAME                                                                          
+P_NAME                                                                          
+
+SQL> 
+SQL> SELECT TRIM('A' FROM P_NAME) FROM PERSON;
+
+TRIM('A'FR                                                                      
+----------                                                                      
+RAM                                                                             
+SET                                                                             
+LAKSH                                                                           
+RAMESH                                                                          
+
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                     
+---------- ---------- ---------- ----------                                     
+         1 RAM                20         32                                     
+         3 SETA               30         28                                     
+        10 LAKSH              33         41                                     
+         2 RAMESH             10         22                                     
+
+SQL> SELECT TRANSLATE(P_NAME,'A','V') FROM PERSON;
+
+TRANSLATE(                                                                      
+----------                                                                      
+RVM                                                                             
+SETV                                                                            
+LVKSH                                                                           
+RVMESH                                                                          
+
+SQL> SELECT TRIM('A' FROM P_NAME) FROM PERSON;
+
+TRIM('A'FR                                                                      
+----------                                                                      
+RAM                                                                             
+SET                                                                             
+LAKSH                                                                           
+RAMESH                                                                          
+
+SQL> SELECT TRIM(P_NAME FROM 'A') FROM PERSON;
+SELECT TRIM(P_NAME FROM 'A') FROM PERSON
+       *
+ERROR at line 1:
+ORA-30001: trim set should have only one character 
+
+
+SQL> SELECT TRIM('R' FROM P_NAME) FROM PERSON;
+
+TRIM('R'FR                                                                      
+----------                                                                      
+AM                                                                              
+SETA                                                                            
+LAKSH                                                                           
+AMESH                                                                           
+
+SQL> SELECT * FROM PERSON;
+
+      P_ID P_NAME         P_DEPT        AGE                                     
+---------- ---------- ---------- ----------                                     
+         1 RAM                20         32                                     
+         3 SETA               30         28                                     
+        10 LAKSH              33         41                                     
+         2 RAMESH             10         22                                     
+
+SQL> SELECT TRIM('K' FROM P_NAME) FROM PERSON;
+
+TRIM('K'FR                                                                      
+----------                                                                      
+RAM                                                                             
+SETA                                                                            
+LAKSH                                                                           
+RAMESH                                                                          
+
+SQL> SELECT CONCATE(ENAME,SAL) FROM EMP;
+SELECT CONCATE(ENAME,SAL) FROM EMP
+       *
+ERROR at line 1:
+ORA-00904: "CONCATE": invalid identifier 
+
+
+SQL> SELECT CONCAT(ENAME,SAL) FROM EMP;
+
+CONCAT(ENAME,SAL)                                                               
+--------------------------------------------------                              
+SMITH800                                                                        
+ALLEN1600                                                                       
+WARD1250                                                                        
+JONES2975                                                                       
+MARTIN1250                                                                      
+BLAKE2850                                                                       
+CLARK2450                                                                       
+SCOTT3000                                                                       
+KING5000                                                                        
+TURNER1500                                                                      
+ADAMS1100                                                                       
+
+CONCAT(ENAME,SAL)                                                               
+--------------------------------------------------                              
+JAMES950                                                                        
+FORD3000                                                                        
+MILLER1300                                                                      
+
+14 rows selected.
+
+SQL> SELECT ENAME||SAL FROM EMP;
+
+ENAME||SAL                                                                      
+--------------------------------------------------                              
+SMITH800                                                                        
+ALLEN1600                                                                       
+WARD1250                                                                        
+JONES2975                                                                       
+MARTIN1250                                                                      
+BLAKE2850                                                                       
+CLARK2450                                                                       
+SCOTT3000                                                                       
+KING5000                                                                        
+TURNER1500                                                                      
+ADAMS1100                                                                       
+
+ENAME||SAL                                                                      
+--------------------------------------------------                              
+JAMES950                                                                        
+FORD3000                                                                        
+MILLER1300                                                                      
+
+14 rows selected.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+PROD                           TABLE                                            
+COLLEGE                        TABLE                                            
+VACCI                          TABLE                                            
+COUR                           TABLE                                            
+STUD                           TABLE                                            
+ORDERS                         TABLE                                            
+CUSTOMERS                      TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ICICI_BANK                     TABLE                                            
+BANK                           TABLE                                            
+SBI                            TABLE                                            
+COMPANY                        TABLE                                            
+IOT_TAB                        TABLE                                            
+PERSON                         TABLE                                            
+
+17 rows selected.
+
+SQL> SELECT CURRENT_DATE FROM EMP;
+
+CURRENT_D                                                                       
+---------                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+
+CURRENT_D                                                                       
+---------                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+26-JUL-23                                                                       
+
+14 rows selected.
+
+SQL> SELECT LOWER(SUBSTR(ENAME,1,3))|| UPPER(SUBSTR(ENAME,4)) FROM EMP;
+
+LOWER(SUBS                                                                      
+----------                                                                      
+smiTH                                                                           
+allEN                                                                           
+warD                                                                            
+jonES                                                                           
+marTIN                                                                          
+blaKE                                                                           
+claRK                                                                           
+scoTT                                                                           
+kinG                                                                            
+turNER                                                                          
+adaMS                                                                           
+
+LOWER(SUBS                                                                      
+----------                                                                      
+jamES                                                                           
+forD                                                                            
+milLER                                                                          
+
+14 rows selected.
+
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE                                                                         
+---------                                                                       
+26-JUL-23                                                                       
+
+SQL> SELECT CURRENT_DATE FROM DUAL;
+
+CURRENT_D                                                                       
+---------                                                                       
+26-JUL-23                                                                       
+
+SQL> SELECT MONTHS_BETWEEN(15-AUG-1966,15-AUG-2023) FROM DUAL;
+SELECT MONTHS_BETWEEN(15-AUG-1966,15-AUG-2023) FROM DUAL
+                                     *
+ERROR at line 1:
+ORA-00904: "AUG": invalid identifier 
+
+
+SQL>  SELECT MONTHS_BETWEEN('15-AUG-1966','15-AUG-2023') FROM DUAL;
+
+MONTHS_BETWEEN('15-AUG-1966','15-AUG-2023')                                     
+-------------------------------------------                                     
+                                       -684                                     
+
+SQL> SELECT MONTHS_BETWEEN('JAN-12-23','JAN-12-1966') FROM DUAL;
+SELECT MONTHS_BETWEEN('JAN-12-23','JAN-12-1966') FROM DUAL
+                      *
+ERROR at line 1:
+ORA-01858: a non-numeric character was found where a numeric was expected 
+
+
+SQL> SELECT MONTHS_BETWEEN('06-JUN-2001','06-JUN-2023') FROM DUAL;
+
+MONTHS_BETWEEN('06-JUN-2001','06-JUN-2023')                                     
+-------------------------------------------                                     
+                                       -264                                     
+
+SQL> SELECT ADD_MONTHS('23-JAN-23',12) FROM DUAL;
+
+ADD_MONTH                                                                       
+---------                                                                       
+23-JAN-24                                                                       
+
+SQL> SPOOL OFF;

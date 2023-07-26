@@ -1,0 +1,219 @@
+ CREATE TABLE COMPANY(
+  2   CID NUMBER(10)PRIMARY KEY,
+  3   CNAME VARCHAR(20)NOT NULL,
+  4   CBRANCH VARCHAR(20),
+  5   CADDRE  VARCHAR(20) DEFAULT('INDIA'));
+
+Table created.
+
+SQL> CREATE TABLE WORKERS(
+  2  WID NUMBER(20)PRIMARY KEY,
+  3  WNAME VARCHAR(15)NOT NULL,
+  4  WAGE  NUMBER(3)CHECK(AGE>18),
+  5  WADD VARCHAR(15)DEFAULT('BANG'),
+  6  CID NUMBER(10)REFERANCES COMPANY(CID));
+WAGE  NUMBER(3)CHECK(AGE>18),
+                            *
+ERROR at line 4:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL>  CREATE TABLE WORKERS(
+  2   WID NUMBER(20)PRIMARY KEY,
+  3   WNAME VARCHAR(15)NOT NULL, WADD VARCHAR(15)DEFAULT('BANG'),
+  4   CID NUMBER(10)REFERANCES COMPANY(CID));
+ CID NUMBER(10)REFERANCES COMPANY(CID))
+               *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL>  CREATE TABLE WORKERS(
+  2   WID NUMBER(20)PRIMARY KEY,
+  3   WNAME VARCHAR(15)NOT NULL,
+  4    WADD VARCHAR(15)DEFAULT('BANG'),
+  5   CID NUMBER(10)REFERANCES COMPANY(CID));
+ CID NUMBER(10)REFERANCES COMPANY(CID))
+               *
+ERROR at line 5:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE WORKER(
+  2  WID NUMBER(20)PRIMARY KEY,
+  3  WNAME VARCHAR(15)NOT NULL,
+  4  WADD  VARCHAR(20)DEFAULT('BANG'),
+  5  WHD   DATE,
+  6  CID NUMBER(10)REFERENCES COMPANY(CID));
+
+Table created.
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                                                                   
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20                                                                                                                   
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30                                                                                                                   
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                                                                   
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20                                                                                                                   
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                                                                                                   
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                                                                                                   
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                                                                                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                                                                                                   
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                                                                                                   
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30                                                                                                                   
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20                                                                                                                   
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30                                                                                                                   
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20                                                                                                                   
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                                                                                                   
+
+14 rows selected.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                                                                                                                                                       
+------------------------------ ------- ----------                                                                                                                                                       
+DEPT                           TABLE                                                                                                                                                                    
+EMP                            TABLE                                                                                                                                                                    
+BONUS                          TABLE                                                                                                                                                                    
+SALGRADE                       TABLE                                                                                                                                                                    
+PROD                           TABLE                                                                                                                                                                    
+COLLEGE                        TABLE                                                                                                                                                                    
+VACCI                          TABLE                                                                                                                                                                    
+COUR                           TABLE                                                                                                                                                                    
+STUD                           TABLE                                                                                                                                                                    
+ORDERS                         TABLE                                                                                                                                                                    
+CUSTOMERS                      TABLE                                                                                                                                                                    
+ICICI_BANK                     TABLE                                                                                                                                                                    
+BANK                           TABLE                                                                                                                                                                    
+SBI                            TABLE                                                                                                                                                                    
+IOT_TABLE                      TABLE                                                                                                                                                                    
+COMPANY                        TABLE                                                                                                                                                                    
+WORKER                         TABLE                                                                                                                                                                    
+
+17 rows selected.
+
+SQL> SELECT * FROM COMPANY AND WORKER;
+SELECT * FROM COMPANY AND WORKER
+                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT * FROM COMPANY,WORKER;
+
+no rows selected
+
+SQL> -----ALTER TABLE----
+SQL> 
+SQL> SELECT * FROM COMPANY;
+
+no rows selected
+
+SQL> DESC COMPANY;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ CID                                                                                                               NOT NULL NUMBER(10)
+ CNAME                                                                                                             NOT NULL VARCHAR2(20)
+ CBRANCH                                                                                                                    VARCHAR2(20)
+ CADDRE                                                                                                                     VARCHAR2(20)
+
+SQL> ALTER TABLE COMAPNY
+  2  ADD CAGE VARCHAR(20);
+ALTER TABLE COMAPNY
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> ALTER TABLE COMPANY
+  2  ADD CAGE VARCHAR(20)CHECK(CAGE>18);
+
+Table altered.
+
+SQL> DESC COMPANY;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ CID                                                                                                               NOT NULL NUMBER(10)
+ CNAME                                                                                                             NOT NULL VARCHAR2(20)
+ CBRANCH                                                                                                                    VARCHAR2(20)
+ CADDRE                                                                                                                     VARCHAR2(20)
+ CAGE                                                                                                                       VARCHAR2(20)
+
+SQL> DESC WORKER;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ WID                                                                                                               NOT NULL NUMBER(20)
+ WNAME                                                                                                             NOT NULL VARCHAR2(15)
+ WADD                                                                                                                       VARCHAR2(20)
+ WHD                                                                                                                        DATE
+ CID                                                                                                                        NUMBER(10)
+
+SQL> ALTER TABLE WORKER
+  2  ADD WSAL VARCHAR(20) CHECK(WSAL>1000);
+
+Table altered.
+
+SQL> DESC WORKER ;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ WID                                                                                                               NOT NULL NUMBER(20)
+ WNAME                                                                                                             NOT NULL VARCHAR2(15)
+ WADD                                                                                                                       VARCHAR2(20)
+ WHD                                                                                                                        DATE
+ CID                                                                                                                        NUMBER(10)
+ WSAL                                                                                                                       VARCHAR2(20)
+
+SQL> ALTER TABLE WORKER
+  2  RENAME COLUMN WADD TO ADDRESS;
+
+Table altered.
+
+SQL> DESC WORKER
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ WID                                                                                                               NOT NULL NUMBER(20)
+ WNAME                                                                                                             NOT NULL VARCHAR2(15)
+ ADDRESS                                                                                                                    VARCHAR2(20)
+ WHD                                                                                                                        DATE
+ CID                                                                                                                        NUMBER(10)
+ WSAL                                                                                                                       VARCHAR2(20)
+
+SQL> ALTER TABLE WORKER
+  2  DROP COLUMN ADDREE;
+DROP COLUMN ADDREE
+            *
+ERROR at line 2:
+ORA-00904: "ADDREE": invalid identifier 
+
+
+SQL> ALTER TABLE WORKER
+  2  DROP ADDRESS;
+DROP ADDRESS
+     *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> ALTER TABLE WORKER
+  2  DROP COLUMN ADDRESS;
+
+Table altered.
+
+SQL> ALTER TABLE WORKER
+  2  ADD ADDRESS VARCHAR(20)DEFAULT
+  3  ('BANG');
+
+Table altered.
+
+SQL> DESC WORKER;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ WID                                                                                                               NOT NULL NUMBER(20)
+ WNAME                                                                                                             NOT NULL VARCHAR2(15)
+ WHD                                                                                                                        DATE
+ CID                                                                                                                        NUMBER(10)
+ WSAL                                                                                                                       VARCHAR2(20)
+ ADDRESS                                                                                                                    VARCHAR2(20)
+
+SQL> SPOOL OFF;

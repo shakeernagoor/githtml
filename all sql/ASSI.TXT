@@ -1,0 +1,438 @@
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select substr(ename,1,(length(ename)/2)) from emp;
+
+SUBSTR(ENA
+----------
+SM
+AL
+WA
+JO
+MAR
+BL
+CL
+SC
+KI
+TUR
+AD
+JA
+FO
+MIL
+
+14 rows selected.
+
+SQL> select ename,job from emp
+  2  where substr
+  3  ;
+
+*
+ERROR at line 3:
+ORA-00920: invalid relational operator
+
+
+SQL>  select ename,job from emp
+  2   where substr 
+  3  ;
+
+*
+ERROR at line 3:
+ORA-00920: invalid relational operator
+
+
+SQL>  select ename,job from emp
+  2   where substr (job,1,3)='MAN';
+
+ENAME      JOB
+---------- ---------
+JONES      MANAGER
+BLAKE      MANAGER
+CLARK      MANAGER
+
+SQL> SELECT SAL*6
+  2  FROM EMP
+  3  WHERE SUBSTR(JOB,1,3)='MAN';
+
+     SAL*6
+----------
+     17850
+     17100
+     14700
+
+SQL> SELECT ENAME,SAL*6
+  2  FROM EMP
+  3  WHERE SUBSTR(JOB,1,3)='MAN';
+
+ENAME           SAL*6
+---------- ----------
+JONES           17850
+BLAKE           17100
+CLARK           14700
+
+SQL> SELECT LOWER SUBSTR(ENAME,1,3), UPPER SUBSTR(ENAME,4,(LENGHT(ENAME)) FROM EMP;
+SELECT LOWER SUBSTR(ENAME,1,3), UPPER SUBSTR(ENAME,4,(LENGHT(ENAME)) FROM EMP
+                   *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL>  SELECT LOWER SUBSTR(ENAME,1,3), UPPER SUBSTR(ENAME,4,(LENGHT(ENAME))) FROM EMP;
+ SELECT LOWER SUBSTR(ENAME,1,3), UPPER SUBSTR(ENAME,4,(LENGHT(ENAME))) FROM EMP
+                    *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT LOWER SUBSTR(ENAME,1,3) UPPER SUBSTR(ENAME,4,(LENGHT(ENAME))) FROM EMP;
+SELECT LOWER SUBSTR(ENAME,1,3) UPPER SUBSTR(ENAME,4,(LENGHT(ENAME))) FROM EMP
+                   *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL>  SELECT LOWER SUBSTR(ENAME,1,3) UPPER SUBSTR(ENAME,4) FROM EMP;
+ SELECT LOWER SUBSTR(ENAME,1,3) UPPER SUBSTR(ENAME,4) FROM EMP
+                    *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL>  SELECT LOWER (SUBSTR(ENAME,1,3)),UPPER(SUBSTR(ENAME,4,(LENGHT(ENAME)))) FROM EMP;
+ SELECT LOWER (SUBSTR(ENAME,1,3)),UPPER(SUBSTR(ENAME,4,(LENGHT(ENAME)))) FROM EMP
+                                                        *
+ERROR at line 1:
+ORA-00904: "LENGHT": invalid identifier
+
+
+SQL>  SELECT LOWER SUBSTR(ENAME,1,3)), UPPER(SUBSTR(ENAME,4)) FROM EMP;
+ SELECT LOWER SUBSTR(ENAME,1,3)), UPPER(SUBSTR(ENAME,4)) FROM EMP
+                    *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL>  SELECT LOWER SUBSTR(ENAME,1,3)), UPPER(SUBSTR(ENAME,3)) FROM EMP;
+ SELECT LOWER SUBSTR(ENAME,1,3)), UPPER(SUBSTR(ENAME,3)) FROM EMP
+                    *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL>  SELECT LOWER(SUBSTR(ENAME,1,3)), UPPER UPPER(SUBSTR(ENAME,3)) FROM EMP;
+ SELECT LOWER(SUBSTR(ENAME,1,3)), UPPER UPPER(SUBSTR(ENAME,3)) FROM EMP
+                                             *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT LOWER(SUBSTR(ENAME,1,3)), UPPER(SUBSTR(ENAME,3)) FROM EMP;
+
+LOW UPPER(SU
+--- --------
+smi ITH
+all LEN
+war RD
+jon NES
+mar RTIN
+bla AKE
+cla ARK
+sco OTT
+kin NG
+tur RNER
+ada AMS
+jam MES
+for RD
+mil LLER
+
+14 rows selected.
+
+SQL> SELECT ENAME,SAL
+  2  FROM EMP
+  3  WHERE SUBSTR(JOB,1,3)='MAN';
+
+ENAME             SAL
+---------- ----------
+JONES            2975
+BLAKE            2850
+CLARK            2450
+
+SQL> SELECT ENAME,SAL,JOB
+  2  FROM EMP
+  3  WHERE SUBSTR(JOB,1,3)='MAN';
+
+ENAME             SAL JOB
+---------- ---------- ---------
+JONES            2975 MANAGER
+BLAKE            2850 MANAGER
+CLARK            2450 MANAGER
+
+SQL> SELECT SAL*6,JOB
+  2  FROM EMP
+  3  WHERE SUBSTR(JOB,1,3)='MAN';
+
+     SAL*6 JOB
+---------- ---------
+     17850 MANAGER
+     17100 MANAGER
+     14700 MANAGER
+
+SQL> SELECT SUBSTR(ENAME,1,2)
+  2  FROM EMP
+  3  WHERE MOD(SAL/2)!=0;
+WHERE MOD(SAL/2)!=0
+      *
+ERROR at line 3:
+ORA-00909: invalid number of arguments
+
+
+SQL>  SELECT SUBSTR(ENAME,1,2)
+  2   FROM EMP
+  3  WHERE MOD(SAL,2)!=0;
+
+SU
+--
+JO
+
+SQL> SELECT SUBSTR(ENAME,1,2),SAL
+  2  FROM EMP
+  3  WHERE MOD(SAL,2)!=0;
+
+SU        SAL
+-- ----------
+JO       2975
+
+SQL> SELECT * FROM EMP
+  2  WHERE SUBSTR(ENAME,1)='A';
+
+no rows selected
+
+SQL> SELECT * FROM EMP
+  2  WHERE INSTR(ENAME,'A',1);
+WHERE INSTR(ENAME,'A',1)
+                       *
+ERROR at line 2:
+ORA-00920: invalid relational operator
+
+
+SQL> SELECT INSTR(ENAME,A,1) FROM EMP;
+SELECT INSTR(ENAME,A,1) FROM EMP
+                   *
+ERROR at line 1:
+ORA-00904: "A": invalid identifier
+
+
+SQL>  SELECT INSTR(ENAME,'A',1) FROM EMP;
+
+INSTR(ENAME,'A',1)
+------------------
+                 0
+                 1
+                 2
+                 0
+                 2
+                 3
+                 3
+                 0
+                 0
+                 0
+                 1
+                 2
+                 0
+                 0
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME,1,(LIKE(ENAME)))='A'
+  2  FROM EMP;
+SELECT SUBSTR(ENAME,1,(LIKE(ENAME)))='A'
+                       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> SELECT SUBSTR(ENAME,1,(LIKE(ENAME,'A'))) FROM EMP;
+SELECT SUBSTR(ENAME,1,(LIKE(ENAME,'A'))) FROM EMP
+                       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL>  SELECT SUBSTR(ENAME,1,(LIKE(ENAME,1)))='A' FROM EMP;
+ SELECT SUBSTR(ENAME,1,(LIKE(ENAME,1)))='A' FROM EMP
+                        *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL>  SELECT SUBSTR(ENAME,1,(LENGTH(ENAME,1)))='A' FROM EMP;
+ SELECT SUBSTR(ENAME,1,(LENGTH(ENAME,1)))='A' FROM EMP
+                        *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE SUBSTR(ENAME,1,(LENGTH(ENAME)))='A';
+
+no rows selected
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME,1)='A' FROM EMP;
+SELECT SUBSTR(ENAME,1)='A' FROM EMP
+                      *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE SUBSTR(ENAME,1,1)='A';
+
+ENAME
+----------
+ALLEN
+ADAMS
+
+SQL> SELECT REPLACE('PALN',PALIN) FROM DUAL;
+SELECT REPLACE('PALN',PALIN) FROM DUAL
+                      *
+ERROR at line 1:
+ORA-00904: "PALIN": invalid identifier
+
+
+SQL> SELECT REPLACE('PALN','PALIN') FROM DUAL;
+
+REPL
+----
+PALN
+
+SQL> SELECT PEPLACE('DEVELOPER','DEVELOPMENT') FROM DUAL;
+SELECT PEPLACE('DEVELOPER','DEVELOPMENT') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: "PEPLACE": invalid identifier
+
+
+SQL> SELECT REPLACE('DEVELOPER','DEVELOPMENT') FROM DUAL;
+
+REPLACE('
+---------
+DEVELOPER
+
+SQL> SELECT ENAME 
+  2  FROM EMP
+  3  WHERE SUBSTR(ENAME,1,1)='A','E','I','O','U';
+WHERE SUBSTR(ENAME,1,1)='A','E','I','O','U'
+                           *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT ENAME 
+  2  FROM EMP
+  3  WHERE SUBSTR(ENAME,1,1) IN('A','E','I','O','U');
+
+ENAME
+----------
+ALLEN
+ADAMS
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL>  SELECT ENAME 
+  2   FROM EMP
+  3   WHERE SUBSTR(ENAME,1,1)
+  4  =('A','E','I','O','U');
+=('A','E','I','O','U')
+*
+ERROR at line 4:
+ORA-01797: this operator must be followed by ANY or ALL
+
+
+SQL> SELECT ENAME 
+  2  FROM EMP
+  3  WHERE SUBSTR(ENAME,-1,-1)IN('A','E','I','O','U');
+
+no rows selected
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE SUBSTR(ENAME,-1,-1)='K';
+
+no rows selected
+
+SQL>  SELECT ENAME
+  2   FROM EMP
+  3   WHERE SUBSTR(ENAME,-1)='K';
+
+ENAME
+----------
+CLARK
+
+SQL>  SELECT ENAME
+  2   FROM EMP
+  3   WHERE SUBSTR(ENAME,-1)IN('A','E','I','O','U');
+
+ENAME
+----------
+BLAKE
+
+SQL> 

@@ -1,0 +1,9 @@
+select * from college;
+
+    STD_ID STD_NAME             BRN                                             
+---------- -------------------- --------------------                            
+         1 ram                  EEE                                             
+         5 SETA                 ECE                                             
+         3 ZUBAR                MEC                                             
+
+SQL> spool off;

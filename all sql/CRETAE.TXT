@@ -1,0 +1,86 @@
+ CREATE TABLE VACCI(
+  2   VID NUMBER(5)PRIMARY KEY,
+  3   VANME VARCHAR(20)NOT NULL,
+  4   PRICE NUMBER(7,2),
+  5   REGNO NUMBER(10) UNIQUE NOT NULL);
+ CREATE TABLE VACCI(
+              *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> DESC VACCI;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ VID                                                                                                               NOT NULL NUMBER(5)
+ VANME                                                                                                             NOT NULL VARCHAR2(20)
+ PRICE                                                                                                                      NUMBER(7,2)
+ REGNO                                                                                                             NOT NULL NUMBER(10)
+
+SQL> ---FOREIGN KEY
+SQL> 
+SQL> CREATE TABLE COUR(
+  2  CID NUMBER(10)PRIMARY KEY,
+  3  CNAME VARCHAR(20)NOT NULL,
+  4  FEES NUMBER(8,3),
+  5  TNAME VARCHAR(20));
+
+Table created.
+
+SQL> CREATE TABLE STUD(
+  2  SID NUMBER(10)PRIMARY KEY,
+  3  SNAME VARCHAR(25)NOT NULL,
+  4  AGE NUMBER(3)CHECK(AGE>18),
+  5  ADDR VARCHAR(25)DEFAULT('INDIA'),
+  6  CID NUMBER(20)REFERENCES COUR(CID));
+
+Table created.
+
+SQL> SELECT* FROM STUD;
+
+no rows selected
+
+SQL> SELECT* FROM ALL TAB;
+SELECT* FROM ALL TAB
+             *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                                                                                                                                                       
+------------------------------ ------- ----------                                                                                                                                                       
+DEPT                           TABLE                                                                                                                                                                    
+EMP                            TABLE                                                                                                                                                                    
+BONUS                          TABLE                                                                                                                                                                    
+SALGRADE                       TABLE                                                                                                                                                                    
+PROD                           TABLE                                                                                                                                                                    
+COLLEGE                        TABLE                                                                                                                                                                    
+VACCI                          TABLE                                                                                                                                                                    
+COUR                           TABLE                                                                                                                                                                    
+STUD                           TABLE                                                                                                                                                                    
+ICICI_BANK                     TABLE                                                                                                                                                                    
+BANK                           TABLE                                                                                                                                                                    
+SBI                            TABLE                                                                                                                                                                    
+IOT_TABLE                      TABLE                                                                                                                                                                    
+
+13 rows selected.
+
+SQL> CREATE TABLE ORDERS(
+  2  ORDERID  NUMBER(20)PRIMARY KEY,
+  3  ORDERNAME VARCHAR(20)NOT NULL,
+  4  ORDERSTATUS VARCHAR(10)UNIQUE,
+  5  PRICE NUMBER(10));
+
+Table created.
+
+SQL> CREATE TABLE CUSTOMERS(
+  2  CID NUMBER(20)PRIMARY KEY,
+  3  CNAME VARCHAR(15)NOT NULL,
+  4  CADDRESS VARCHAR(20) DEFAULT('BANGLORE'),
+  5  ORDERID NUMBER(20)REFERENCES ORDERS(ORDERID));
+
+Table created.
+
+SQL> SPOOL OFF;
